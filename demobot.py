@@ -135,7 +135,7 @@ async def setup_inside_container(name):
         f'docker exec {name} mkdir -p /var/run/sshd',
         # set root password to something random (not recommended) or create 'vpsuser'
         f"docker exec {name} useradd -m -s /bin/bash vpsuser || true",
-        f"docker exec {name} bash -c 'echo "vpsuser:password" | chpasswd' || true",
+       f'docker exec {name} bash -c "echo \'vpsuser:password\' | chpasswd" || true',
         # enable and start ssh
         f'docker exec {name} systemctl enable ssh || true',
         f'docker exec {name} systemctl start ssh || true',
